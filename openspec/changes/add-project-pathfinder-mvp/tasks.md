@@ -2,12 +2,12 @@
 
 ## 1. 프로젝트 구성
 
-- [ ] 1.1 `.gitignore`(`node_modules/`, `dist/`, `*.ait`, `.env*` 등)를 추가하고 `git status`에서 해당 경로가 제외되는지 확인한다
-- [ ] 1.2 React 18, TypeScript, Vite 프로젝트를 저장소 루트에 구성하고 `npm run build`가 성공하는지 확인한다
-- [ ] 1.3 `@apps-in-toss/web-framework`를 설치하고 `npx ait init`을 실행한 뒤, 생성된 설정 파일의 `appName`을 `project-pathfinder`로 임시 지정하고 불필요한 예시 권한을 제거하여 `npm run dev`로 앱이 열리는지 확인한다
-- [ ] 1.4 `@toss/tds-mobile`, `@toss/tds-mobile-ait`, `@emotion/react`, React Router를 설치하고, TDS 문서대로 Provider를 적용한 뒤 TDS 버튼 하나가 개발 서버에서 렌더링되는지 확인한다
-- [ ] 1.5 Vitest와 `npm test`, 타입 검사 스크립트를 추가하고 샘플 테스트 1개가 통과하는지 확인한 뒤 샘플을 제거한다
-- [ ] 1.6 `src/domain`, `src/storage`, `src/state`, `src/screens`, `src/ui` 구조를 만들고, `index.html`에 `maximum-scale=1, user-scalable=no` viewport와 `color-scheme: light`를 지정한 뒤 빌드 결과물에 포함되는지 확인한다
+- [x] 1.1 `.gitignore`(`node_modules/`, `dist/`, `*.ait`, `.env*` 등)를 추가하고 `git status`에서 해당 경로가 제외되는지 확인한다
+- [x] 1.2 React 18, TypeScript, Vite 프로젝트를 저장소 루트에 구성하고 `npm run build`가 성공하는지 확인한다
+- [x] 1.3 `@apps-in-toss/web-framework`를 설치하고 `npx ait init`을 실행한 뒤, 생성된 설정 파일의 `appName`을 `project-pathfinder`로 임시 지정하고 불필요한 예시 권한을 제거하여 `npm run dev`로 앱이 열리는지 확인한다
+- [x] 1.4 `@toss/tds-mobile`, `@toss/tds-mobile-ait`, `@emotion/react`, React Router를 설치하고, TDS 문서대로 Provider를 적용한 뒤 TDS 버튼 하나가 개발 서버에서 렌더링되는지 확인한다
+- [x] 1.5 Vitest와 `npm test`, 타입 검사 스크립트를 추가하고 샘플 테스트 1개가 통과하는지 확인한 뒤 샘플을 제거한다
+- [x] 1.6 `src/domain`, `src/storage`, `src/state`, `src/screens`, `src/ui` 구조를 만들고, `index.html`에 `maximum-scale=1, user-scalable=no` viewport와 `color-scheme: light`를 지정한 뒤 빌드 결과물에 포함되는지 확인한다
 
 ## 2. 도메인 로직
 

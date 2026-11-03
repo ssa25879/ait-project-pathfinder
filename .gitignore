@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.ait
+.env*
+!.env.example
+*.tsbuildinfo
+
+*.ait
