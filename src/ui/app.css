@@ -1,0 +1,23 @@
+* { box-sizing: border-box; }
+body { font-family: system-ui, sans-serif; color: #191f28; background: #fff; line-height: 1.5; }
+main { max-width: 640px; margin: auto; padding: 20px; }
+h1 { font-size: 24px; margin: 0 0 16px; overflow-wrap: anywhere; }
+h2 { font-size: 20px; margin: 16px 0 8px; }
+h3 { font-size: 17px; margin: 0 0 8px; }
+p, a, label, summary { overflow-wrap: anywhere; }
+a { color: #1760bc; }
+article { border: 1px solid #e5e8eb; border-radius: 16px; padding: 16px; margin: 12px 0; }
+form, fieldset { min-width: 0; }
+form { margin: 16px 0; }
+label { display: grid; gap: 6px; margin: 12px 0; }
+input, textarea, select { width: 100%; min-width: 0; min-height: 44px; padding: 10px; border: 1px solid #b0b8c1; border-radius: 8px; font: inherit; background: #fff; color: #191f28; }
+textarea { min-height: 88px; resize: vertical; }
+.check { display: flex; align-items: center; min-height: 44px; gap: 10px; }
+.check input { width: 24px; min-height: 24px; flex-shrink: 0; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 16px 0; }
+.actions a { min-height: 44px; display: inline-flex; align-items: center; }
+[role="alert"] { color: #b12432; }
+[role="alertdialog"] { padding: 16px; background: #fff4f4; border-radius: 12px; margin: 16px 0; }
+details { margin-top: 24px; }
+summary { min-height: 44px; cursor: pointer; }
+.save-notice { padding: 12px 20px; background: #f2f4f6; }
