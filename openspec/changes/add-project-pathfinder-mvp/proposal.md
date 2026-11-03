@@ -40,5 +40,5 @@
 
 - **코드:** 저장소 루트에 앱 전체를 새로 만든다. 기존 코드 변경은 없다.
 - **의존성:** `@apps-in-toss/web-framework`, `@toss/tds-mobile`, `@toss/tds-mobile-ait`, `@emotion/react`, React 18, React Router, Vite, TypeScript, Vitest를 추가한다.
-- **외부 시스템:** 서버와 네트워크 API를 사용하지 않는다. 토스 앱의 네이티브 `Storage`만 사용한다.
+- **외부 시스템:** 서버와 네트워크 API를 사용하지 않는다. 토스 앱의 네이티브 `Storage`와 사용자 식별키 API만 사용한다.
 - **외부 작업:** 토스앱 실기기 테스트에는 콘솔의 앱 등록과 `appName`이 필요하다.
