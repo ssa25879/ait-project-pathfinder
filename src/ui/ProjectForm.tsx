@@ -1,14 +1,12 @@
 import { useState, type FormEvent } from 'react';
 import { Button } from '@toss/tds-mobile';
-import type { MutationResult, Project, ProjectInput } from '../domain';
+import { localDateString, type MutationResult, type Project, type ProjectInput } from '../domain';
 import { mutationMessage } from './common';
 
 export function ProjectForm({ project, onSave, onCancel }: { project?: Project; onSave: (input: ProjectInput) => MutationResult; onCancel: () => void }) {
-  const today = new Date();
-  const localDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
   const [name, setName] = useState(project?.name ?? '');
   const [description, setDescription] = useState(project?.description ?? '');
-  const [startDate, setStartDate] = useState(project?.startDate ?? localDate);
+  const [startDate, setStartDate] = useState(() => project?.startDate ?? localDateString());
   const [error, setError] = useState('');
   function submit(event: FormEvent) {
     event.preventDefault();

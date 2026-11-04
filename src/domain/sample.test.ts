@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { emptyData, tasksOfProject } from './model';
-import { createProject } from './mutations';
+import { createProject, createTask } from './mutations';
 import { computeReadiness, summarizeProject } from './readiness';
 import { addSampleProject } from './sample';
 import { computeSchedule, projectEndDate } from './schedule';
@@ -24,14 +24,21 @@ describe('addSampleProject', () => {
   });
 
   it('기존 데이터를 유지하고 반복 추가할 수 있다', () => {
-    const existing = createProject(emptyData(), { name: '내 프로젝트', startDate: '2026-11-04' });
+    const project = createProject(emptyData(), { name: '내 프로젝트', startDate: '2026-11-04' });
+    if (!project.ok) throw new Error('fixture');
+    const existing = createTask(project.data, project.id!, { name: '내 작업', durationDays: 2 });
     if (!existing.ok) throw new Error('fixture');
     const once = addSampleProject(existing.data, '2026-11-04');
     if (!once.ok) throw new Error('fixture');
     const twice = addSampleProject(once.data, '2026-11-04');
     if (!twice.ok) throw new Error('fixture');
     expect(twice.data.projects).toHaveLength(3);
-    expect(twice.data.projects[0]).toEqual(existing.data.projects[0]);
-    expect(twice.data.tasks).toHaveLength(8);
+    expect(twice.data.tasks).toHaveLength(9);
+    // 앞선 프로젝트와 작업은 뒤의 추가로 바뀌지 않는다.
+    expect(once.data.projects.slice(0, 1)).toEqual(existing.data.projects);
+    expect(once.data.tasks.slice(0, 1)).toEqual(existing.data.tasks);
+    expect(twice.data.projects.slice(0, 2)).toEqual(once.data.projects);
+    expect(twice.data.tasks.slice(0, 5)).toEqual(once.data.tasks);
+    expect(new Set(twice.data.tasks.map((t) => t.id)).size).toBe(9);
   });
 });

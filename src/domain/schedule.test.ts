@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { addDays, computeSchedule, projectEndDate, taskDates } from './schedule';
+import { addDays, computeSchedule, localDateString, projectEndDate, taskDates } from './schedule';
 
 const s = (id: string, durationDays: number, ...predecessorIds: string[]) => ({ id, durationDays, predecessorIds });
 
@@ -91,6 +91,10 @@ describe('dates', () => {
     expect(addDays('2028-02-29', 1)).toBe('2028-03-01');
     expect(addDays('2026-02-28', 1)).toBe('2026-03-01');
     expect(projectEndDate('2026-12-25', 10)).toBe('2027-01-03');
+  });
+  it('local date uses device-local fields with zero padding', () => {
+    expect(localDateString(new Date(2026, 0, 5, 0, 30))).toBe('2026-01-05');
+    expect(localDateString(new Date(2026, 11, 31, 23, 59))).toBe('2026-12-31');
   });
   it('task dates from ES/EF', () => {
     expect(taskDates('2026-12-01', { es: 2, ef: 5 })).toEqual({ start: '2026-12-03', end: '2026-12-05' });

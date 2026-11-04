@@ -69,6 +69,11 @@ export function computeSchedule(tasks: readonly ScheduleTask[]): ScheduleResult 
   return { totalDuration: total, byTask, criticalTaskIds, criticalEdges };
 }
 
+/** 기기 시간대 기준 날짜를 YYYY-MM-DD 문자열로 만든다. */
+export function localDateString(date: Date = new Date()): string {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+}
+
 /** YYYY-MM-DD 문자열에 일 수를 더한다(UTC 기준). */
 export function addDays(date: string, days: number): string {
   const [y, m, d] = date.split('-').map(Number);

@@ -13,6 +13,7 @@ test.each(['{', '{"version":2}'])('복원 보호 상태에서 변경과 저장 �
   await store.retryLoad();
   expect(store.getSnapshot().status).toBe(raw === '{' ? 'load_error' : 'newer_version');
   expect(() => store.createProject({ name: '새 프로젝트', startDate: '2026-11-03' })).toThrow();
+  expect(() => store.addSampleProject('2026-11-03')).toThrow();
   await store.retrySave();
   await vi.runAllTimersAsync();
   expect(save).not.toHaveBeenCalled();
@@ -53,6 +54,24 @@ test('도메인 변경과 메모리 저장 복원 및 selector 메모이즈', as
   await restored.retryLoad();
   expect(restored.getSnapshot().data).toEqual(store.getSnapshot().data);
   expect(store.getSnapshot().saveState).toBe('idle');
+  store.dispose(); restored.dispose();
+});
+
+test('샘플 프로젝트 추가가 기존 데이터를 유지하고 저장 후 복원된다', async () => {
+  const original = createProject(emptyData(), { name: '원본', startDate: '2026-11-03' });
+  if (!original.ok) throw new Error('fixture');
+  const storage = createMemoryStorage(serialize(original.data));
+  const store = createAppStore(storage);
+  await store.retryLoad();
+  const result = store.addSampleProject('2026-11-04');
+  if (!result.ok) throw new Error('fixture');
+  expect(store.getSnapshot().data.projects.map(p => p.name)).toEqual(['원본', '샘플: 앱 출시 준비']);
+  expect(store.projectView(result.id!)?.summary.progressPercent).toBe(25);
+  expect(store.projectView(result.id!)?.schedule.totalDuration).toBe(12);
+  await vi.advanceTimersByTimeAsync(300);
+  const restored = createAppStore(storage);
+  await restored.retryLoad();
+  expect(restored.getSnapshot().data).toEqual(store.getSnapshot().data);
   store.dispose(); restored.dispose();
 });
 
