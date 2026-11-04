@@ -60,6 +60,7 @@ export function createAppStore(storage: StorageAdapter) {
     updateTask: (id: string, input: domain.TaskInput, opts?: domain.MutationOptions) => mutate(data => domain.updateTask(data, id, input, opts)),
     deleteTask: (id: string, opts?: domain.MutationOptions) => mutate(data => domain.deleteTask(data, id, opts)),
     changeTaskStatus: (id: string, status: domain.TaskStatus, opts?: domain.MutationOptions) => mutate(data => domain.changeTaskStatus(data, id, status, opts)),
+    addSampleProject: (startDate: string) => mutate(data => domain.addSampleProject(data, startDate)),
     projectView(projectId: string) {
       if (cachedData !== state.data) { views.clear(); cachedData = state.data; }
       const project = state.data.projects.find(p => p.id === projectId);

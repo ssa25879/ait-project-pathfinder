@@ -26,7 +26,7 @@ export function useAppStore() {
   const { status, saveState, data } = store.getSnapshot();
   return { status, saveState, data, retryLoad: store.retryLoad, retrySave: store.retrySave,
     createProject: store.createProject, updateProject: store.updateProject, deleteProject: store.deleteProject,
-    createTask: store.createTask, updateTask: store.updateTask, deleteTask: store.deleteTask, changeTaskStatus: store.changeTaskStatus };
+    createTask: store.createTask, updateTask: store.updateTask, deleteTask: store.deleteTask, changeTaskStatus: store.changeTaskStatus, addSampleProject: store.addSampleProject };
 }
 
 export function useProjectView(projectId: string) {
